@@ -1,0 +1,28 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={`EvosHosting - ${frontmatter.title}`}
+  description={frontmatter.description}
+>
+  <div class="flex justify-center px-4">
+    <div
+      class="w-full space-y-2 rounded-xl border-2 border-dark/50 bg-black/10 px-8 backdrop-blur md:w-3/4 xl:flex xl:flex-col xl:justify-center"
+    >
+      <h1
+        class="px-3 py-10 text-center text-4xl font-bold md:py-16 md:text-5xl"
+      >
+        {frontmatter.title}
+      </h1>
+      <hr class="rounded-xl border-2 border-dark/50" />
+      <div
+        class="prose prose-invert py-5 prose-h1:text-2xl md:prose-h1:text-3xl"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</Layout>

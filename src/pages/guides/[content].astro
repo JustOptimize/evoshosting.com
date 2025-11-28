@@ -1,0 +1,63 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+const { content } = Astro.params;
+if (!content) return Astro.redirect("/404");
+
+const allGuides = await getCollection("guides");
+if (allGuides.filter((data) => data.slug === content).length === 0) {
+  return Astro.redirect("/404");
+}
+
+const guide = await getEntry("guides", content);
+if (!guide) return Astro.redirect("/404");
+
+// @ts-ignore
+const { Content } = await guide.render();
+
+const date = new Date(guide.data.date);
+
+// Format to "DD/MM/YYYY"
+const formattedDate = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+}).format(date);
+---
+
+<Layout
+  title={guide.data.title}
+  description={guide.data.description}
+  keywords={guide.data.tags}
+>
+  <div class="flex justify-center px-4">
+    <div
+      class="w-full space-y-2 rounded-xl border-2 border-dark/50 bg-black/10 px-8 py-4 backdrop-blur md:w-3/4 xl:flex xl:flex-col xl:justify-center"
+    >
+      <div
+        class="prose prose-invert py-5 prose-h1:text-2xl md:prose-h1:text-3xl"
+      >
+        <h1>{guide.data.title}</h1>
+        <p class="text-sm md:text-base">
+          Updated by <b>{guide.data.author}</b> on {formattedDate}
+        </p>
+        <div class="flex space-x-2 overflow-y-auto">
+          {
+            guide.data.tags.map((tag: string) => (
+              <a
+                href={`/guides/search?q=${tag}`}
+                class="cursor-pointer no-underline"
+              >
+                <span class="rounded-lg bg-primary/20 px-3 py-1 text-sm font-extrabold text-primary md:text-base">
+                  {tag}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+        <Content />
+      </div>
+    </div>
+  </div>
+</Layout>

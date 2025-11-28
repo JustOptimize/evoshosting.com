@@ -1,0 +1,54 @@
+---
+import Layout from "@layouts/Layout.astro";
+import GuidesSearch from "@components/GuidesSearch.astro";
+import GuideCard from "@components/GuideCard.svelte";
+import { getCollection } from "astro:content";
+
+const guides = await getCollection("guides");
+---
+
+<Layout
+  title="EvosHosting - Get help via guides"
+  description="Do you have a question? Search if there is a guide about it. The EvosHosting guides are a series of guides on using the machines to their best advantage."
+>
+  <div class="flex flex-col justify-center space-y-8 px-4 py-8">
+    <div class="space-y-3 md:space-y-10">
+      <h1 class="text-center text-4xl font-extrabold md:text-6xl">
+        Get help via <span class="text-primary">guides</span>
+      </h1>
+
+      <p class="hidden text-center md:block">
+        Do you have a question? Search if there is a guide about it. The
+        EvosHosting guides <br />are a series of guides on using the machines to
+        their best advantage.
+      </p>
+      <p class="block text-center text-sm md:hidden">
+        Do you have a question? Search if there is a guide!
+      </p>
+      <GuidesSearch />
+    </div>
+
+    <div class="md:px-16">
+      <div class="flex justify-between pb-7">
+        <div>
+          <h3 class="text-xl font-bold text-primary md:text-2xl">
+            Want a fast pick?
+          </h3>
+          <h2 class="text-3xl font-extrabold text-white md:text-5xl">
+            Our latest posts
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-2">
+        {
+          guides
+            .slice(0, 10)
+            .map((guide) => (
+              <GuideCard slug={guide.slug} data={guide.data} client:load />
+            ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+import logo from "@images/logo.svg";
+import discord from "@images/platforms/discord.svg";
+import tiktok from "@images/platforms/tiktok.svg";
+import instagram from "@images/platforms/instagram.svg";
+import telegram from "@images/platforms/telegram.svg";
+import payments from "@images/payments.svg";
+---
+
+<footer class="flex flex-col justify-between p-3 md:flex-row md:p-10">
+  <div class="text-center md:text-left">
+    <Image
+      src={logo}
+      alt="Logo"
+      width="140"
+      height="140"
+      class="mx-auto md:mx-0"
+    />
+
+    <h2 class="pt-4 text-lg font-bold md:text-xl">
+      EvosHosting Powered By Unknown Company SRL
+    </h2>
+    <p class="text-sm font-semibold text-white/50">
+      Copyright © 2024 EvosHosting. All rights reserved
+    </p>
+
+    <div class="hidden items-center space-x-2 pt-4 md:flex">
+      <a
+        href="https://discord.com/invite/evoshosting"
+        class="rounded-lg bg-dark/50 px-2.5 py-3 transition hover:bg-dark/30"
+      >
+        <Image src={discord} alt="Discord" width="28" height="28" />
+      </a>
+
+      <a
+        href="https://www.tiktok.com/@evoshosting"
+        class="rounded-lg bg-dark/50 px-3 py-2.5 transition hover:bg-dark/30"
+      >
+        <Image src={tiktok} alt="TikTok" width="22" height="22" />
+      </a>
+
+      <a
+        href="https://www.instagram.com/evoshosting"
+        class="rounded-lg bg-dark/50 px-3 py-2.5 transition hover:bg-dark/30"
+      >
+        <Image src={instagram} alt="Instagram" width="22" height="22" />
+      </a>
+
+      <a
+        href="https://t.me/evoshosting"
+        class="rounded-lg bg-dark/50 p-3 transition hover:bg-dark/30"
+      >
+        <Image src={telegram} alt="Telegram" width="22" height="22" />
+      </a>
+    </div>
+
+    <p class="hidden pt-4 text-sm font-bold md:block">
+      <span class="text-white/50">VAT ID</span>: IT00000000000
+    </p>
+  </div>
+
+  <div class="grid justify-items-end p-3 pt-6 md:pt-0">
+    <div class="flex justify-between space-x-4">
+      <div>
+        <h2 class="text-xl font-bold">Services</h2>
+        <ul class="space-y-2 pt-4">
+          <li>
+            <a
+              href="/products/vps"
+              class="font-semibold text-white/50 hover:text-white">VPS</a
+            >
+          </li>
+          <li>
+            <a
+              href="/products/vds"
+              class="font-semibold text-white/50 hover:text-white">VDS</a
+            >
+          </li>
+          <li>
+            <a
+              href="/products/dedicated"
+              class="font-semibold text-white/50 hover:text-white">Dedicated</a
+            >
+          </li>
+          <li>
+            <a
+              href="/games/minecraft"
+              class="font-semibold text-white/50 hover:text-white">Games</a
+            >
+          </li>
+          <li>
+            <a
+              href="/products/discord"
+              class="font-semibold text-white/50 hover:text-white"
+              >Discord Bot</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold">Links</h2>
+        <ul class="space-y-2 pt-4">
+          <li>
+            <a
+              href="/about"
+              class="font-semibold text-white/50 hover:text-white">About us</a
+            >
+          </li>
+          <li>
+            <a href="#" class="font-semibold text-white/50 hover:text-white"
+              >Client Area</a
+            >
+          </li>
+          <li>
+            <a href="#" class="font-semibold text-white/50 hover:text-white"
+              >Service Status</a
+            >
+          </li>
+          <li>
+            <a href="#" class="font-semibold text-white/50 hover:text-white"
+              >Games Panel</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resellers"
+              class="font-semibold text-white/50 hover:text-white">Resellers</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold">Support</h2>
+        <ul class="space-y-2 pt-4">
+          <li>
+            <a
+              href="/about/terms"
+              class="font-semibold text-white/50 hover:text-white"
+              >Terms of Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="/about/privacy"
+              class="font-semibold text-white/50 hover:text-white"
+              >Privacy Policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="mailto:abuse@evoshosting.com"
+              class="font-semibold text-white/50 hover:text-white"
+              >Abuse Request</a
+            >
+          </li>
+          <li>
+            <a
+              href="/guides"
+              class="font-semibold text-white/50 hover:text-white">Guides</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <Image
+      src={payments}
+      alt="Payments"
+      width="330"
+      height="130"
+      class="hidden pt-8 md:block"
+    />
+  </div>
+
+  <div class="flex items-center justify-center space-x-2 pt-4 md:hidden">
+    <a
+      href="https://discord.com/invite/evoshosting"
+      class="rounded-lg bg-dark/50 px-2.5 py-3 transition hover:bg-dark/30"
+    >
+      <Image src={discord} alt="Discord" width="28" height="28" />
+    </a>
+
+    <a
+      href="https://www.tiktok.com/@evoshosting"
+      class="rounded-lg bg-dark/50 px-3 py-2.5 transition hover:bg-dark/30"
+    >
+      <Image src={tiktok} alt="TikTok" width="22" height="22" />
+    </a>
+
+    <a
+      href="https://www.instagram.com/evoshosting"
+      class="rounded-lg bg-dark/50 px-3 py-2.5 transition hover:bg-dark/30"
+    >
+      <Image src={instagram} alt="Instagram" width="22" height="22" />
+    </a>
+
+    <a
+      href="https://t.me/evoshosting"
+      class="rounded-lg bg-dark/50 p-3 transition hover:bg-dark/30"
+    >
+      <Image src={telegram} alt="Telegram" width="22" height="22" />
+    </a>
+  </div>
+
+  <p class="block pt-4 text-center text-sm font-bold md:hidden">
+    <span class="text-white/50">VAT ID</span>: IT01483520118
+  </p>
+</footer>
+
+<div class="flex justify-center pb-5">
+  <Image
+    src={payments}
+    alt="Payments"
+    width="330"
+    height="130"
+    class="block pt-3 md:hidden"
+  />
+</div>

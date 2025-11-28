@@ -1,0 +1,96 @@
+---
+title: "Monitoring Resources on Linux: Essential Command-Line Tools"
+author: Oggetto
+date: "2024-07-15"
+description: "Learn how to monitor resources on a Linux machine using command-line tools. Track CPU, memory, and disk space effectively on an Ubuntu system."
+tags:
+  - linux
+  - ram
+  - cpu
+  - disk
+  - ubuntu
+---
+
+Monitoring system resources is essential to ensure that a Linux machine, like an Ubuntu server, runs efficiently and reliably. Knowing the status of resources like CPU, memory, and disk space can help identify performance issues and make informed decisions for system optimization. In this guide, we will explore various tools and techniques to monitor resources on an Ubuntu machine.
+
+## Why Monitor System Resources?
+
+Regularly monitoring system resources helps in:
+
+- **Identifying performance bottlenecks:** Detect which components (CPU, memory, or disk) are under heavy load.
+- **Preventing system crashes:** Take preemptive action before resources are exhausted.
+- **Optimizing system performance:** Ensure your system runs efficiently by understanding usage patterns.
+
+## Monitoring CPU
+
+### `top`
+
+The `top` command is an interactive tool that displays active processes and CPU usage in real-time. Start it by typing:
+
+```bash
+top
+```
+
+The screen will show an overview of CPU usage, memory usage, and process information. To exit, press `q`.
+
+### `htop`
+
+`htop` is a more advanced alternative to `top`, with a user-friendly interface. Install it with:
+
+```bash
+sudo apt install htop
+```
+
+Launch `htop` with the command:
+
+```bash
+htop
+```
+
+## Monitoring Memory
+
+### `free`
+
+The `free` command shows real-time memory usage. Run:
+
+```bash
+free -h
+```
+
+The `-h` option formats the output in human-readable units (e.g., MB, GB).
+
+### `vmstat`
+
+The `vmstat` command provides an overview of virtual memory usage. Run:
+
+```bash
+vmstat 5
+```
+
+This command updates the information every 5 seconds. Use `Ctrl+C` to stop it.
+
+## Monitoring Disk Space
+
+### `df`
+
+The `df` command shows the available and used disk space on all mounted partitions. Run:
+
+```bash
+df -h
+```
+
+The `-h` option shows values in human-readable units.
+
+### `du`
+
+The `du` command shows disk space usage for directories and files. To see the disk usage in a specific directory, run:
+
+```bash
+du -sh /path/to/directory
+```
+
+The `-s` option summarizes the total, and `-h` makes it human-readable.
+
+## Conclusion
+
+Monitoring resources on an Ubuntu machine is crucial for maintaining system performance and stability. By using a combination of command-line tools, you can get a complete view of the system's resource status and intervene promptly if problems arise. Starting with tools like `top`, `htop`, `free`, `vmstat`, `df`, and `du` will allow you to have effective control and keep your system in top shape.

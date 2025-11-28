@@ -1,0 +1,110 @@
+---
+title: Install the Latest Node.js Version on Ubuntu
+author: Valerio Clemenzi
+date: "2024-06-29"
+description: "How to install the latest version of the popular JavaScript engine Node.js on Ubuntu"
+tags:
+  - nodejs
+  - npm
+  - ubuntu
+---
+
+When installing Node.js from `apt`, you may receive an outdated version of the engine. To install a recent version of Node.js, we can use [NodeSource](https://github.com/nodesource).
+
+## 1. Pre-requirements
+
+First, we need to install `curl`, a tool to perform HTTP requests.
+
+```bash
+sudo apt-get install curl
+```
+
+_Encountered errors? Try running `sudo apt-get update` first._
+
+## 2. Install the Node.js Setup Script
+
+Now, let's run the script provided by NodeSource for setting up Node.js.
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash -
+```
+
+**Explanation:**
+
+- `curl -fsSL`: This command downloads the setup script from NodeSource.
+- `https://deb.nodesource.com/setup_22.x`: This is the URL of the setup script for Node.js version 22.x.
+- `| sudo bash -`: This pipes the downloaded script to `bash` to execute it with `sudo` privileges.
+
+## 3. Install Node.js
+
+Finally, use the package manager `apt` to install Node.js.
+
+```bash
+sudo apt-get install nodejs
+```
+
+This will install both Node.js and `npm` (Node Package Manager).
+
+## Verify Installation
+
+Yes, that's all! Now let's check if the Node.js version is updated.
+
+```bash
+node -v
+```
+
+You should see the version of Node.js that was installed.
+
+## Additional Tips
+
+1. **Updating Node.js**:
+   If you need to update Node.js in the future, you can rerun the setup script for the desired version (e.g., `setup_22.x` for version 22.x).
+
+2. **Global Packages Permission Issue**:
+   If you encounter permission issues when installing global packages with `npm`, you might want to change the directory where `npm` stores globally installed packages.
+
+   ```bash
+   mkdir ~/.npm-global
+   npm config set prefix '~/.npm-global'
+   ```
+
+   Then add the following line to your `~/.profile` or `~/.bashrc` file:
+
+   ```bash
+   export PATH=~/.npm-global/bin:$PATH
+   ```
+
+   Finally, update your system variables:
+
+   ```bash
+   source ~/.profile
+   ```
+
+3. **Using Node Version Manager (NVM)**:
+   Alternatively, you can use Node Version Manager (NVM) to manage multiple Node.js versions on the same machine.
+
+   Install NVM:
+
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+   ```
+
+   Load NVM:
+
+   ```bash
+   source ~/.nvm/nvm.sh
+   ```
+
+   Install the latest Node.js version:
+
+   ```bash
+   nvm install node
+   ```
+
+   Use a specific Node.js version:
+
+   ```bash
+   nvm use <version>
+   ```
+
+That's it! You now have the latest version of Node.js running on your Ubuntu system. Happy coding!

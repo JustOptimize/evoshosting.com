@@ -1,0 +1,27 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { referal } from "@utils/vars.ts";
+
+const path = Astro.url.pathname.replace(/^\//, "");
+
+if (referal[path]) return Astro.redirect(`#`);
+---
+
+<Layout
+  title="EvosHosting - Page not found 404"
+  description="This page could not be found. Please check the URL or try again later."
+>
+  <div class="py-24">
+    <h2 class="text-center text-9xl font-extrabold">404</h2>
+    <p class="text-center font-bold">
+      This page could not be found. Please check the URL or try again later.
+    </p>
+
+    <p class="text-center italic text-white/50">
+      If you think this is a mistake, please <a
+        href="/contact"
+        class="underline">contact us</a
+      >.
+    </p>
+  </div>
+</Layout>

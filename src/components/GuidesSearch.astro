@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import search from "@images/search.svg";
+
+const { query } = Astro.props;
+---
+
+<form action="/guides/search" method="get">
+  <div class="flex justify-center">
+    <input
+      name="q"
+      placeholder="How to..."
+      value={query}
+      class="w-80 rounded-l-2xl border-2 border-r-0 border-dark/50 bg-dark/5 px-3 py-1 text-lg outline-none md:w-1/2 md:px-3 md:py-2"
+    />
+    <button
+      class="flex rounded-r-2xl border-2 border-l-0 border-dark/50 bg-dark/5 py-2 pl-4 pr-4"
+      type="submit"
+    >
+      <Image src={search} alt="search" width="20" height="20" class="md:mt-1" />
+    </button>
+  </div>
+</form>

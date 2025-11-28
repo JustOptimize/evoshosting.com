@@ -1,0 +1,158 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+import Features from "@components/Features.svelte";
+import Products from "@components/Products.svelte";
+import Map from "@components/Map.svelte";
+import Reviews from "@components/Reviews.svelte";
+import cloud from "@images/cloud.webp";
+import cpu from "@images/cpu.webp";
+import arrow from "@images/arrow.svg";
+import trustpilot from "@images/trustpilot.svg";
+import { globalProductDiscount, globalProductDiscountHref } from "@utils/vars";
+---
+
+<Layout
+  title="EvosHosting - Host your idea, fast, unlimited"
+  description="EvosHosting offers complete transparency and unlimited bandwidth, ensuring customer satisfaction and the success of online projects."
+>
+  <div
+    class="relative flex flex-col items-center justify-between px-3 py-14 md:flex-row md:p-12"
+  >
+    <div class="absolute left-4 top-0 z-10 md:flex md:w-1/4 md:justify-center">
+      <div class="flex flex-col">
+        <Image
+          src={cloud}
+          alt="cloud"
+          class="h-11 w-11 rotate-3 animate-fade-right md:h-28 md:w-28"
+        />
+        <Image
+          src={cloud}
+          alt="cloud"
+          class="ml-10 h-8 w-8 -rotate-3 animate-fade-right blur-xs md:ml-32 md:h-14 md:w-14 md:blur-0"
+        />
+      </div>
+    </div>
+    <div
+      class="z-30 flex-col justify-center space-y-4 overflow-hidden md:order-2 md:flex md:w-full md:space-y-8"
+    >
+      <h1 class="text-center text-4xl font-extrabold md:text-6xl">
+        {
+          globalProductDiscount.length > 0 && (
+            <div class="flex justify-center ">
+              <a href={globalProductDiscountHref}>
+                <h6 class="mb-2 rounded-full border-2 border-yellow-evos px-4 text-center text-xs font-extrabold text-yellow-evos transition hover:bg-yellow-evos hover:text-black md:text-base">
+                  {globalProductDiscount}
+                </h6>
+              </a>
+            </div>
+          )
+        }
+        Host your idea, <br />
+        <span class="text-primary">fast</span>, <span class="text-primary"
+          >unlimited</span
+        >.
+      </h1>
+
+      <p
+        class="hidden text-balance text-center text-sm font-bold text-white/80 md:block md:text-lg"
+      >
+        With EvosHosting, you get more than just hosting. We prioritize your
+        satisfaction, ensuring absolute transparency and unlimited bandwidth to
+        support your online success.
+      </p>
+
+      <p
+        class="block text-balance text-center text-sm font-bold text-white/80 md:hidden md:text-lg"
+      >
+        EvosHosting, satisfaction, transparency, unlimited bandwidth to support
+        your online success.
+      </p>
+
+      <div class="flex justify-center space-x-5">
+        <a
+          href="/#choose-your-plan"
+          class="rounded-xl bg-primary px-8 py-2 font-bold transition hover:bg-primary/85 md:py-2.5"
+        >
+          Discover Plans
+        </a>
+        <a
+          href="/contact"
+          class="z-30 rounded-xl border-2 border-white px-8 py-[5px] font-bold transition hover:bg-white hover:text-black md:py-2"
+        >
+          Support
+        </a>
+      </div>
+    </div>
+    <div
+      class="absolute right-1 top-56 z-10 md:right-0 md:top-2 md:order-3 md:flex md:w-1/4 md:flex-col md:justify-end"
+    >
+      <Image
+        src={cpu}
+        alt="cpu"
+        class="ml-24 h-11 w-11 rotate-3 animate-fade-left blur-xs md:h-28 md:w-28 md:blur-0"
+      />
+      <Image
+        src={cpu}
+        alt="cpu"
+        class="ml-10 h-8 w-8 -rotate-3 animate-fade-left shadow-primary blur-xs md:h-14 md:w-14 md:blur-0"
+      />
+    </div>
+  </div>
+
+  <div class="bg-pattern2 md:px-8">
+    <Features moreMargin={true} lighterRV={true} client:load />
+    <div class="flex justify-center pt-5">
+      <a href="/#choose-your-plan">
+        <Image src={arrow} alt="cloud" class="h-8 w-8" />
+      </a>
+    </div>
+
+    <div class="pt-6">
+      <h6 class="text-center text-2xl font-extrabold text-primary">
+        Interested?
+      </h6>
+      <h2
+        id="choose-your-plan"
+        class="pb-5 text-center text-4xl font-extrabold md:text-5xl"
+      >
+        Choose your Plan
+      </h2>
+
+      <Products client:load />
+    </div>
+
+    <div class="pt-6">
+      <h6 class="text-center text-2xl font-extrabold text-primary">
+        Aren’t sure about bandwidth?
+      </h6>
+      <h2 class="pb-5 text-center text-4xl font-extrabold md:text-5xl">
+        Check your ping
+      </h2>
+
+      <Map client:load />
+    </div>
+  </div>
+
+  <div class="pt-16">
+    <h6 class="text-center text-2xl font-extrabold text-primary">
+      Don't believe us?
+    </h6>
+    <h2 class="pb-5 text-center text-4xl font-extrabold md:text-5xl">
+      Check out our reviews
+    </h2>
+
+    <div class="md:px-4">
+      <Reviews client:load />
+    </div>
+
+    <a href="#">
+      <h5 class="flex items-center justify-center gap-x-2 text-2xl font-bold">
+        See more on
+
+        <Image src={trustpilot} alt="trustpilot" class="h-28 w-28" />
+        <Image src={arrow} alt="arrow" class="mt-1.5 h-4 w-4 -rotate-90" />
+      </h5>
+    </a>
+  </div>
+</Layout>

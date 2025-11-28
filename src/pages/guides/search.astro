@@ -1,0 +1,50 @@
+---
+import Layout from "@layouts/Layout.astro";
+import GuideCard from "@components/GuideCard.svelte";
+import GuidesSearch from "@components/GuidesSearch.astro";
+import { getCollection } from "astro:content";
+
+const q = Astro.url.searchParams.get("q");
+
+if (!q) return Astro.redirect("/guides");
+
+const guides = await getCollection("guides", ({ data }) => {
+  const tags = data.tags;
+
+  const filteredGuides = tags.filter((tag) => {
+    return tag.toLowerCase().includes(q.toLowerCase());
+  });
+
+  return filteredGuides.length > 0;
+});
+---
+
+<Layout
+  title="EvosHosting - Get help via guides"
+  description="Do you have a question? Search if there is a guide about it. The EvosHosting guides are a series of guides on using the machines to their best advantage."
+>
+  <div class="flex flex-col justify-center space-y-8 px-4 py-8">
+    <div class="md:px-16">
+      <div class="flex flex-col justify-between space-y-2 pb-7 md:flex-row">
+        <div>
+          <h3 class="text-2xl font-bold text-primary">Search Results for</h3>
+          <h2 class="text-5xl font-extrabold text-white">{q}</h2>
+        </div>
+
+        <GuidesSearch query={q} />
+      </div>
+
+      {
+        guides.length !== 0 ? (
+          guides.slice(0, 10).map((guide) => (
+            <div class="mt-2">
+              <GuideCard slug={guide.slug} data={guide.data} client:load />
+            </div>
+          ))
+        ) : (
+          <h2 class="text-xl font-bold">No guides exist for this topic!</h2>
+        )
+      }
+    </div>
+  </div>
+</Layout>

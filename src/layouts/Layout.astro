@@ -1,0 +1,89 @@
+---
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  bgImage?: string;
+  keywords?: string[];
+}
+
+const { title, description, bgImage, keywords } = Astro.props;
+
+// Check if props are passed
+if (!title || !description) {
+  throw new Error("Title and description are required");
+}
+---
+
+<!doctype html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta
+      name="description"
+      content="EvosHosting offers complete transparency and unlimited bandwidth, ensuring customer satisfaction and the success of online projects."
+    /> -->
+    <meta name="description" content=`${description}` />
+    <meta
+      name="keywords"
+      content=`${keywords ? keywords.map((k) => k)+", " : ""}hosting, web hosting, website hosting, hosting services, web hosting services, website hosting services, hosting provider, web hosting provider, website hosting provider, hosting company, web hosting company, website hosting company, hosting solutions, web hosting solutions, website hosting solutions, hosting plans, web hosting plans, website hosting plans, hosting packages, web hosting packages, website hosting packages, hosting features, web hosting features, website hosting features, hosting benefits, web hosting benefits, website hosting benefits, hosting support, web hosting support, website hosting support, hosting security, web hosting security, website hosting security, hosting reliability, web hosting reliability, website hosting reliability, hosting performance, web hosting performance, website hosting performance, hosting speed, web hosting speed, website hosting speed, hosting uptime, web hosting uptime, website hosting uptime, hosting customer service, web hosting customer service, website hosting customer service, hosting satisfaction, web hosting satisfaction, website hosting satisfaction, hosting experience, web hosting experience, website hosting experience, hosting transparency, web hosting transparency, website hosting transparency, hosting bandwidth, web hosting bandwidth, website hosting bandwidth, hosting success, web hosting success, website hosting success, hosting project, web hosting project, website hosting project, hosting online project, web hosting online project, website hosting online project, hosting digital presence, web hosting digital presence, website hosting digital presence, hosting EvosHosting, web hosting EvosHosting, website hosting EvosHosting, hosting service EvosHosting, web hosting service EvosHosting, website hosting service EvosHosting, hosting satisfaction EvosHosting, web hosting satisfaction EvosHosting, website hosting satisfaction EvosHosting, hosting transparency EvosHosting, web hosting transparency EvosHosting, website hosting transparency EvosHosting, hosting bandwidth EvosHosting, web hosting bandwidth EvosHosting, website hosting bandwidth EvosHosting, hosting success EvosHosting, web hosting success EvosHosting, website hosting success EvosHosting, hosting project EvosHosting, web hosting project EvosHosting, website hosting project EvosHosting, hosting online project EvosHosting, web hosting online project EvosHosting, website hosting online project EvosHosting, hosting digital presence EvosHosting, web hosting digital presence EvosHosting, website hosting digital presence EvosHosting, hosting provider EvosHosting, web hosting provider EvosHosting, website hosting provider EvosHosting, hosting company EvosHosting, web hosting company EvosHosting, website hosting company`
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="author" content="EvosHosting" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:image" content="/images/preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content="EvosHosting" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#009EFF" />
+    <meta property="og:description" content=`${description}` />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-full-dark bg-pattern bg-cover font-jaka text-white xl:flex xl:justify-center"
+    style={bgImage
+      ? {
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "stretch",
+        }
+      : {
+          backgroundSize: "stretch",
+        }}
+  >
+    <div class="w-full max-w-screen-2xl">
+      <div class="flex min-h-screen flex-col justify-between">
+        <Navbar />
+        <main class="mb-auto pt-5">
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
+    <style is:global>
+      * {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <script>
+      const url = new URL(window.location.href);
+
+      const aff = url.searchParams.get("aff");
+
+      if (aff) {
+        window.location.href = `#`;
+      }
+    </script>
+  </body>
+</html>

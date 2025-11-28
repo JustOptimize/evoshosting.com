@@ -1,0 +1,61 @@
+---
+title: Connect to your machine remotely via SSH
+author: Valerio Clemenzi
+date: "2024-06-28"
+description: "Establish Remote SSH Access to Your Machine: Step-by-Step Guide"
+tags:
+  - ssh
+  - vps
+  - linux
+  - windows
+  - connect
+---
+
+Connecting remotely to your machine is a common necessity for those who work with servers, both professionally and personally. SSH (Secure Shell) is one of the safest and most efficient methods to do so. In this article, we will see how to use SSH to connect to a remote machine (like a VPS), whether you are using Linux, Windows or MacOS.
+
+## What is SSH?
+
+SSH, or Secure Shell, is a network protocol that allows for secure connections between two computers. By using encryption, SSH ensures that transmitted data cannot be intercepted or altered.
+
+## Connecting to the SSH Server from Linux or macOS
+
+You can connect from another Linux or MacOS system using the terminal. Use the following command, replacing `username` with your username and `hostname` with the IP address or domain name of the remote server:
+
+```bash
+ssh username@hostname
+```
+
+If the SSH server is configured to listen on a port other than 22, use the `-p` option to specify the port:
+
+```bash
+ssh -p 2222 username@hostname
+```
+
+## Connecting to the SSH Server from Windows
+
+On Windows, you can use PuTTY, a free and open-source SSH client. Download PuTTY from the [official website](https://www.putty.org/) and install it.
+
+1. Open PuTTY.
+2. In the "Host Name (or IP address)" section, enter the IP address or domain name of the remote server.
+3. Make sure the port is correct (default is 22).
+4. Click "Open" to start the connection.
+
+### Using OpenSSH in PowerShell
+
+Windows 10 and later versions include the OpenSSH client as a built-in feature in PowerShell. This allows Windows users to perform SSH connections and execute commands on remote servers directly from the command line interface.
+
+## Improving SSH Security
+
+To enhance the security of your SSH connection, consider the following practices:
+
+1. **Use SSH Keys Instead of Passwords**: SSH keys are more secure than passwords. You can generate a key pair with the `ssh-keygen` command and copy the public key to the remote server using `ssh-copy-id`.
+
+2. **Disable Root Access**: Edit the configuration file `/etc/ssh/sshd_config` to prevent direct root access. Find the line `PermitRootLogin` and set it to `no`.
+
+3. **Use a Non-Standard Port**: Changing the SSH server listening port can reduce the risk of automated attacks.
+
+4. **Configure the Firewall**: Ensure that only SSH connections are allowed through the firewall.
+
+## Conclusion
+
+SSH is a powerful tool for securely connecting and managing remote machines. By following these steps, you can configure and use SSH on Linux, Windows, or a VPS. Always remember to follow best security practices to protect your data and systems.

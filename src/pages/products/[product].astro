@@ -1,0 +1,547 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+import ShopCard from "@components/ShopCard.svelte";
+import Features from "@components/Features.svelte";
+import cpu from "@images/cpublue.webp";
+import ok from "@images/ok.svg";
+import {
+  productsPreview,
+  products,
+  type Generic,
+  type Product,
+  type TextItem,
+  type VsContent,
+  type Products,
+} from "@utils/products";
+
+const { product } = Astro.params;
+
+export type Data = {
+  [a: string]: Generic;
+};
+
+let data: Data = {
+  vps: {
+    title: "AMD Ryzen VPS",
+    long: "Virtual Private Server",
+    images: {
+      left: cpu,
+      right: ok,
+    },
+    products: {
+      top: productsPreview[0] as Products,
+      full: products[0] as Products,
+    },
+    vs: {
+      label: "Dedicated and VPS Servers",
+      content: [
+        {
+          title: "VPS",
+          perf: {
+            performance: 50,
+            customization: 40,
+            price: 20,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "VPS servers share physical resources with other users, but thanks to virtualization, each VPS has guaranteed resources. This offers a good balance between cost and performance, making it suitable for many medium-sized applications.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "A VPS offers a high degree of customization, allowing users to install and configure their own operating system and software. Management is usually simplified by intuitive control panels like Virtualizor.",
+              },
+              {
+                title: "Price",
+                content:
+                  "The cost of a VPS is lower than a dedicated server because the physical resources are shared among multiple users. This makes it an economical solution for those who need flexibility and good performance without having to manage an entire physical server.",
+              },
+            ],
+          },
+        },
+        {
+          title: "Dedicated",
+          perf: {
+            performance: 100,
+            customization: 100,
+            price: 80,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "With a dedicated server, the hardware resources are entirely available to a single user, ensuring maximum performance without the risk of congestion caused by other users. This is ideal for resource-intensive applications.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "Customization on a dedicated server is total. The user can configure every aspect of the server, from the operating system to the installed software, tailoring the work environment to their specific needs.",
+              },
+              {
+                title: "Price",
+                content:
+                  "Dedicated servers tend to be more expensive than VPS, as the user is paying for exclusive access to the server's hardware. However, the investment is justified by the performance and security offered.",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  "vps-xeon": {
+    title: "Intel Xeon VPS",
+    long: "Virtual Private Server",
+    images: {
+      left: cpu,
+      right: ok,
+    },
+    products: {
+      top: productsPreview[5] as Products,
+      full: products[5] as Products,
+    },
+    vs: {
+      label: "Intel Xeon VPS and AMD Ryzen VPS",
+      content: [
+        {
+          title: "Intel Xeon VPS",
+          perf: {
+            performance: 40,
+            customization: 40,
+            price: 10,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "Intel Xeon VPS are budget-friendly options that offer shared hardware resources with other users. These servers feature less powerful processors compared to higher-end VPS options, making them unsuitable for high-resource applications. However, they are sufficient for many applications, websites, automation bots ecc...",
+              },
+              {
+                title: "Customization",
+                content:
+                  "Even though they are cost-effective, Intel Xeon VPS still provide a good level of customization. Users can install and configure their own operating system and software. The management of these servers is facilitated by user-friendly control panels, offering a decent level of control and flexibility.",
+              },
+              {
+                title: "Price",
+                content:
+                  "The cost of an Intel Xeon VPS is significantly lower than that of a standard VPS, making it an ideal choice for those with a limited budget. Despite being less powerful, they offer a reliable VPS solution for less demanding applications at a very affordable price.",
+              },
+            ],
+          },
+        },
+        {
+          title: "AMD Ryzen VPS",
+          perf: {
+            performance: 50,
+            customization: 40,
+            price: 20,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "AMD Ryzen VPS servers share physical resources with other users, but thanks to virtualization, each VPS has guaranteed resources. This setup provides a good balance between cost and performance, making it suitable for many medium-sized applications. Ryzen 9 processors are known for their robust performance, offering a significant improvement over budget options.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "AMD Ryzen VPS offers a high degree of customization, similar to Intel Xeon VPS. Users can install and configure their own operating system and software. Management is typically simplified by intuitive control panels like Virtualizor, making it easier to handle various administrative tasks.",
+              },
+              {
+                title: "Price",
+                content:
+                  "While more expensive than Intel Xeon VPS, AMD Ryzen VPS still costs less than dedicated servers because the physical resources are shared among multiple users. This makes it an economical solution for those who need flexibility and good performance without the overhead of managing an entire physical server.",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  vds: {
+    title: "AMD Ryzen VDS",
+    long: "Virtual Dedicated Server",
+    images: {
+      left: cpu,
+      right: ok,
+    },
+    products: {
+      top: productsPreview[1] as Products,
+      full: products[1] as Products,
+    },
+    vs: {
+      label: "Dedicated and VDS Servers",
+      content: [
+        {
+          title: "VDS",
+          perf: {
+            performance: 70,
+            customization: 60,
+            price: 40,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "VDS Performance servers offer dedicated and guaranteed hardware resources, ensuring excellent performance for more demanding applications. With the latest generation processors, these VDS are ideal for intensive workloads.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "A VDS Performance allows for advanced customization, enabling users to configure the operating system and software according to their needs. Resource management is simple and intuitive through advanced control panels.",
+              },
+              {
+                title: "Price",
+                content:
+                  "The cost of a VDS Performance is higher than that of a cheap VDS, reflecting the superior quality of the hardware and guaranteed performance. However, it is a worthwhile investment for those who need high performance and reliability.",
+              },
+            ],
+          },
+        },
+        {
+          title: "Dedicated",
+          perf: {
+            performance: 100,
+            customization: 100,
+            price: 80,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "With a dedicated server, the hardware resources are entirely available to a single user, ensuring maximum performance without the risk of congestion caused by other users. This is ideal for resource-intensive applications.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "Customization on a dedicated server is total. The user can configure every aspect of the server, from the operating system to the installed software, tailoring the work environment to their specific needs.",
+              },
+              {
+                title: "Price",
+                content:
+                  "Dedicated servers tend to be more expensive than VPS, as the user is paying for exclusive access to the server's hardware. However, the investment is justified by the performance and security offered.",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  "vds-xeon": {
+    title: "Intel Xeon VDS",
+    long: "Virtual Dedicated Server",
+    images: {
+      left: cpu,
+      right: ok,
+    },
+    products: {
+      top: productsPreview[6] as Products,
+      full: products[6] as Products,
+    },
+    vs: {
+      label: "VDS Cheap and VDS Performance",
+      content: [
+        {
+          title: "Intel Xeon VDS",
+          perf: {
+            performance: 40,
+            customization: 60,
+            price: 30,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "Intel Xeon VDS offers shared hardware resources with other users but provides dedicated virtual resources. These servers are equipped with less powerful processors compared to premium options, making them suitable for moderately demanding applications. They ensure stability and reliability for various business needs.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "Intel Xeon VDS provides a high level of customization, allowing users to install and configure their own operating system and software. User-friendly control panels enhance the management experience, making it easier to handle configurations and administrative tasks.",
+              },
+              {
+                title: "Price",
+                content:
+                  " The cost of an Intel Xeon VDS is relatively low, making it an attractive option for those seeking dedicated resources on a budget. It is a cost-effective solution for less resource-intensive applications while still providing the reliability of dedicated virtual resources.",
+              },
+            ],
+          },
+        },
+        {
+          title: "AMD Ryzen VDS",
+          perf: {
+            performance: 70,
+            customization: 60,
+            price: 40,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "AMD Ryzen VDS offers dedicated virtual resources with powerful Ryzen 9 processors. This setup guarantees robust performance and is suitable for medium to high-demand applications. AMD Ryzen VDS provides a significant performance boost compared to budget options, making it ideal for more intensive tasks.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "AMD Ryzen VDS also allows a high degree of customization, enabling users to install and configure their own operating system and software. Management is facilitated by intuitive control panels like Virtualizor, which simplify administrative tasks and configurations.",
+              },
+              {
+                title: "Price",
+                content:
+                  "While the cost of a AMD Ryzen VDS is higher than that of an Intel Xeon VDS, it remains more economical than a full dedicated server. This makes it an excellent choice for those who need dedicated virtual resources with superior performance without the high costs associated with managing an entire physical server.",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  discord: {
+    title: "Discord Hosting",
+    long: "Discord Bot Hosting",
+    images: {
+      left: cpu,
+      right: ok,
+    },
+    products: {
+      top: productsPreview[4] as Products,
+      full: products[4] as Products,
+    },
+    vs: {
+      label: "VPS Servers and Discord Hosting",
+      content: [
+        {
+          title: "Discord Hosting",
+          perf: {
+            performance: 40,
+            customization: 10,
+            price: 10,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "Performance is generally sufficient for many bots, but it is typically inferior compared to a VPS due to resource limitations and shared usage with other users.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "Customization is limited to the bot's code, since most of the installation is managed by our panel, making it simpler but also more limited.",
+              },
+              {
+                title: "Price",
+                content:
+                  "Shared hosting services for Discord Bots are typically affordable, with many offering free or low-cost plans. However, for advanced features or higher resource needs, you might need to opt for more expensive plans.",
+              },
+            ],
+          },
+        },
+        {
+          title: "VPS",
+          perf: {
+            performance: 50,
+            customization: 40,
+            price: 20,
+            text: [
+              {
+                title: "Performance",
+                content:
+                  "VPS servers share physical resources with other users, but thanks to virtualization, each VPS has guaranteed resources. This offers a good balance between cost and performance, making it suitable for many medium-sized applications.",
+              },
+              {
+                title: "Customization",
+                content:
+                  "A VPS offers a high degree of customization, allowing users to install and configure their own operating system and software. Management is usually simplified by intuitive control panels like Virtualizor.",
+              },
+              {
+                title: "Price",
+                content:
+                  "The cost of a VPS is lower than a dedicated server because the physical resources are shared among multiple users. This makes it an economical solution for those who need flexibility and good performance without having to manage an entire physical server.",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+};
+
+const productData = data[product as keyof typeof data] as Generic;
+---
+
+<Layout
+  title={`EvosHosting - ${productData.title} (${productData.long})`}
+  description={`Get the best performance, support, and security for your ${productData.title} server with EvosHosting. Choose from a wide range of ${productData.title} hosting plans tailored to meet your specific needs.`}
+>
+  <div
+    class="relative mb-20 flex flex-col items-center justify-between px-3 py-14 md:flex-row md:p-12"
+  >
+    <div
+      class="text-gradient -z-40 hidden font-extrabold md:absolute md:block md:text-big-xl"
+    >
+      {productData.title.split(" ")[0]}
+    </div>
+    <div class="absolute left-4 top-0 z-10 md:flex md:w-1/4 md:justify-center">
+      <div class="flex flex-col">
+        <Image
+          src={productData.images.left}
+          alt="cloud"
+          class="h-11 w-11 rotate-3 animate-fade-right md:h-28 md:w-28"
+        />
+        <Image
+          src={productData.images.left}
+          alt="cloud"
+          class="ml-10 h-8 w-8 -rotate-3 animate-fade-right blur-xs md:ml-32 md:h-14 md:w-14 md:blur-0"
+        />
+      </div>
+    </div>
+    <div
+      class="flex-col justify-center space-y-4 overflow-hidden md:order-2 md:flex md:w-full md:space-y-8"
+    >
+      <h1 class="text-center text-5xl font-extrabold md:text-7xl">
+        {productData.title}
+      </h1>
+
+      <p
+        class="text-balance text-center text-sm font-bold text-primary md:text-2xl"
+      >
+        {productData.long}
+      </p>
+    </div>
+    <div
+      class="absolute right-4 top-44 z-10 md:right-0 md:top-0 md:order-3 md:flex md:w-1/4 md:flex-col md:justify-center"
+    >
+      <Image
+        src={productData.images.right}
+        alt="cpu"
+        class="ml-24 h-11 w-11 rotate-3 animate-fade-left md:h-28 md:w-28 md:blur-0"
+      />
+      <Image
+        src={productData.images.right}
+        alt="cpu"
+        class="ml-10 h-8 w-8 -rotate-3 animate-fade-left shadow-primary blur-xs md:h-14 md:w-14 md:blur-0"
+      />
+    </div>
+  </div>
+
+  <div class="bg-pattern2">
+    <div
+      class="flex flex-col items-center justify-center space-y-5 md:flex-row md:space-x-5 md:space-y-0"
+    >
+      {
+        productData.products.top.map((product: Product, i: number) => (
+          <ShopCard
+            {product}
+            color={i === 1 ? "primary" : "secondary"}
+            big={i === 1}
+          />
+        ))
+      }
+    </div>
+    <div class="mt-20 space-y-6 px-8 pb-20 md:px-16">
+      {
+        productData.title !== "Discord Hosting" && (
+          <>
+            <div class="flex justify-between">
+              <div>
+                <h3 class="text-2xl font-bold text-primary">Want more?</h3>
+                <h2 class="text-5xl font-extrabold text-white">All Plans</h2>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 gap-y-4 md:grid-cols-3 md:gap-x-8 xl:grid-cols-4 xl:grid-cols-center-4">
+              {productData.products.full.map((product: Product) => (
+                <ShopCard {product} color={"secondary"} />
+              ))}
+            </div>
+          </>
+        )
+      }
+      <div
+        class="rounded-2xl border border-dark/50 p-5 text-center text-xl font-bold md:text-2xl"
+      >
+        <span class="text-primary">Delivery in 10min-1h</span>, subject to
+        availability. <br />
+        Contact us to request a custom plan.
+      </div>
+    </div>
+
+    <div>
+      <div class="text-center">
+        <h3 class="text-2xl font-bold text-primary">{productData.vs.label}</h3>
+        <h2 class="text-5xl font-extrabold text-white">
+          What’s the Difference?
+        </h2>
+      </div>
+
+      <div
+        class="flex flex-col justify-between space-y-5 p-10 md:flex-row md:space-x-5 md:space-y-0"
+      >
+        {
+          productData.vs.content.map((content: VsContent, i: number) => (
+            <>
+              {i === 1 && (
+                <div class="flex flex-col items-center justify-center space-y-4">
+                  <div class="h-1.5 w-full rounded-full bg-primary/20 md:h-64 md:w-1.5" />
+                  <span class="text-2xl font-extrabold text-white/40">VS</span>
+                  <div class="h-1.5 w-full rounded-full bg-primary/20 md:h-64 md:w-1.5" />
+                </div>
+              )}
+              <div class="md:mx-auto md:max-w-[47%]">
+                <div>
+                  <h2 class="text-4xl font-extrabold">{content.title}</h2>
+                  <div class="flex flex-col space-y-4">
+                    <div class="flex items-center space-y-2">
+                      <span class="mr-2 mt-2 text-lg font-bold">
+                        PERFORMANCE
+                      </span>
+                      <div class="h-3 w-full rounded-full bg-primary/20">
+                        <div
+                          class="h-3 rounded-full bg-primary"
+                          style={`width: ${content.perf.performance}%`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-y-2">
+                    <span class="mr-2 mt-2 text-lg font-bold">
+                      CUSTOMIZATION
+                    </span>
+                    <div class="h-3 w-full rounded-full bg-primary/20">
+                      <div
+                        class="h-3 rounded-full bg-primary"
+                        style={`width: ${content.perf.customization}%`}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex items-center space-y-2">
+                    <span class="mr-2 mt-2 text-lg font-bold">PRICE</span>
+                    <div class="h-3 w-full rounded-full bg-primary/20">
+                      <div
+                        class="h-3 rounded-full bg-primary"
+                        style={`width: ${content.perf.price}%`}
+                      />
+                    </div>
+                  </div>
+
+                  <div class="pt-5">
+                    {content.perf.text.map((text: TextItem) => (
+                      <div class="space-y-2 py-1.5">
+                        <h3 class="text-2xl font-extrabold">{text.title}</h3>
+                        <p class="text-balance">{text.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="px-4 py-4">
+      <Features client:load />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .text-gradient {
+    background-image: linear-gradient(to top, #011018 0%, #032e44 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

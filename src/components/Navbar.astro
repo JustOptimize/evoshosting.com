@@ -1,0 +1,7 @@
+---
+import Nav from "@components/Navbar.svelte";
+
+const path = Astro.url.pathname;
+---
+
+<Nav client:load path={path} />
