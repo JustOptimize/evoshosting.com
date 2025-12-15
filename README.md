@@ -4,7 +4,7 @@
 
 This repository contains the source code of the former evoshosting.com website, a web hosting provider later rebranded as WaleHost ([https://walehost.com](https://walehost.com)).
 
-The project was primarily developed by [Valerio Clemenzi](https://github.com/clemenzi) (core development) and [JustOptimize](https://github.com/JustOptimize) (SEO optimization).
+The project was primarily developed by [Valerio Clemenzi](https://github.com/clemenzi) (core development) and [JustOptimize](https://github.com/JustOptimize) (PingMap logic, QA and SEO optimization).
 The visual design was created by Idra Arts ([https://idragraphics.com/en](https://idragraphics.com/en)).
 
 Although this codebase does not reflect modern standards or best practices, as it represents Valerio’s first professional web development project, the website achieved solid results in terms of traffic and conversions during its active period (2024–2025). This repository is published to document an early stage of professional growth and preserve the project in its original state for transparency and educational purposes.
